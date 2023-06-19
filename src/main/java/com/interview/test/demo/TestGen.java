@@ -42,6 +42,20 @@ class MyGenList<T>  {
     public List<T> getList(){
         return list;
     }
+
+    public  <E> void printArray(List<E> elements) {
+        elements.stream().forEach(element -> System.out.println(element));
+     }
+
+    public <pacoo2> void printArray2(List<pacoo2> elements) {
+        elements.stream().forEach(element -> System.out.println(element));
+    }
+
+    public <String> void printArray3(List<String> elements) {
+        elements.stream().forEach(element -> System.out.println(element));
+    }
+
+    //Here String a just a keyword like foo bar not the actual String class
 }
 
 public class TestGen {
