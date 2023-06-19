@@ -133,6 +133,92 @@ class Stack<T> {
     }
 }
 
+ class LinkedList<T> {
+    private Node<T> head;
+
+    private static class Node<T> {
+        private T data;
+        private Node<T> next;
+
+        public Node(T data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public void insert(T data) {
+        Node<T> newNode = new Node<>(data);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node<T> current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+    }
+
+    public void delete(T data) {
+        if (head == null) {
+            return;
+        }
+
+        if (head.data.equals(data)) {
+            head = head.next;
+            return;
+        }
+
+        Node<T> current = head;
+        Node<T> prev = null;
+
+        while (current != null && !current.data.equals(data)) {
+            prev = current;
+            current = current.next;
+        }
+
+        if (current == null) {
+            return;
+        }
+
+        prev.next = current.next;
+    }
+
+    public void display() {
+        Node<T> current = head;
+
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        LinkedList<Integer> list = new LinkedList<>();
+
+        list.insert(10);
+        list.insert(20);
+        list.insert(30);
+
+        list.display(); // Output: 10 20 30
+
+        list.delete(20);
+
+        list.display(); // Output: 10 30
+
+        LinkedList<String> stringList = new LinkedList<>();
+
+        stringList.insert("Hello");
+        stringList.insert("World");
+
+        stringList.display(); // Output: Hello World
+    }
+}
+
+
 
 public class TestGen {
 
