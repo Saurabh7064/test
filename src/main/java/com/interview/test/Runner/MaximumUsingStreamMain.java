@@ -4,30 +4,37 @@ package com.interview.test.Runner;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+class EmployeeApplyXYZ{
+    public static Employee employeeNameAddXYZ(Employee employee){
+           employee.setName(employee.getName()+"XYZ");
+           return employee;
+    }
+}
 public class MaximumUsingStreamMain {
 
     public static void main(String args[])
     {
-        //EmployeeWithAgeGreaterThan20();
+        EmployeeWithAgeGreaterThan20();
        //Given a list of employees, you need to filter all the employee whose age is greater
         // than 20 and print the employee names.(Java 8 APIs only)
 
-        //CountEmployeeWithAgeGreaterThan20();
+        CountEmployeeWithAgeGreaterThan20();
         //Given the list of employees, count number of employees with age 25?
 
-        //FindEmployeeWithNameMarry();
+        FindEmployeeWithNameMarry();
         //Given the list of employees, find the employee with name “Mary”.
 
-        //FindEmployeeWithMaximumAge();
+        FindEmployeeWithMaximumAge();
         //Given a list of employee, find maximum age of employee?
 
-        //SortEmployeeByAge();
+        SortEmployeeByAge();
         //Given a list of employees, sort all the employee on the basis of age?
 
-        //groupEmployeeByName();
+        groupEmployeeByName();
         //Given the list of employee, group them by employee name?
 
-       // removeDuplicatesFromIntegers();
+        removeDuplicatesFromIntegers();
         //Given the list of numbers, remove the duplicate elements from the list.
         
         sqaureAndFilter();
@@ -119,18 +126,22 @@ public class MaximumUsingStreamMain {
 
     private static void EmployeeWithAgeGreaterThan20() {
         List<Employee> employeeList = createEmployeeList();
-
         List<String> emplNames = employeeList.stream().filter(emp -> emp.getAge()>20).
                 map(Employee::getName).collect(Collectors.toList());
 
-        emplNames.stream().forEach(name->System.out.println(name));
+        //able to apply something using map
+        List<Employee> emplNames2 = employeeList.stream().filter(emp -> emp.getAge()>20).
+                map(EmployeeApplyXYZ::employeeNameAddXYZ).collect(Collectors.toList());
+
+         emplNames.stream().forEach(name->System.out.println(name));
         //or
-        emplNames.stream().forEach(System.out::println);
+       // emplNames.stream().forEach(System.out::println);
 
         // another way
-        employeeList.stream()
-                .filter(employee -> employee.getAge() > 20)
-                .forEach(employee -> System.out.println(employee.getName()));
+//        employeeList.stream()
+//                .filter(employee -> employee.getAge() > 20)
+//                .forEach(employee -> System.out.println(employee.getName()));
+        //System.exit(0);
     }
 
 
